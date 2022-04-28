@@ -72,8 +72,8 @@ function Header() {
                             </ActiveLink>
                         </li>
                         <li>
-                            <ActiveLink to="/logs" className="nav-link">
-                                Logs
+                            <ActiveLink to="/blogs" className="nav-link">
+                                Blogs
                             </ActiveLink>
                         </li>
                         <li>
