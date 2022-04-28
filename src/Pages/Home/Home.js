@@ -1,9 +1,12 @@
 import React from 'react';
+import Banner from './Banner';
+import Items from './Items';
 
 function Home() {
     return (
         <div>
-            <h2 className="text-3xl">This is Home page</h2>
+            <Banner />
+            <Items />
         </div>
     );
 }
