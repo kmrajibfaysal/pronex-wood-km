@@ -5,11 +5,13 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import React from 'react';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
 
 function SocialLogin() {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+    const navigate = useNavigate();
 
     if (error) {
         return (
@@ -23,8 +25,9 @@ function SocialLogin() {
         return <Loading />;
     }
 
-    const handleSignInWithGoogle = () => {
-        signInWithGoogle();
+    const handleSignInWithGoogle = async () => {
+        await signInWithGoogle();
+        if (user) navigate('/');
     };
 
     return (

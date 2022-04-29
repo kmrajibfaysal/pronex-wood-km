@@ -1,10 +1,20 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
+import auth from '../firebase.init';
 import ActiveLink from '../hooks/ActiveLink';
 
 function Header() {
     const navigate = useNavigate();
+    const [user, loading, error] = useAuthState(auth);
+
+    const handleLoginLogOutButton = () => {
+        user ? signOut(auth) : navigate('/login');
+    };
 
     return (
         <nav className=" rounded border-gray-200 bg-sky-50 px-2 py-2.5 transition-all duration-200 dark:bg-gray-800 sm:px-4">
@@ -16,11 +26,11 @@ function Header() {
                 </ActiveLink>
                 <div className="flex md:order-2">
                     <button
-                        onClick={() => navigate('/login')}
+                        onClick={handleLoginLogOutButton}
                         type="button"
                         className="mr-3 rounded-full bg-sky-700 px-5 py-1.5 text-center text-sm font-medium text-white shadow-lg shadow-gray-300 hover:bg-sky-800 focus:outline-none focus:ring-4 focus:ring-sky-300 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800 md:mr-0"
                     >
-                        Log in
+                        {user ? 'Log out' : 'Log in'}
                     </button>
                     <button
                         data-collapse-toggle="mobile-menu-4"
