@@ -1,17 +1,105 @@
+/* eslint-disable consistent-return */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/aria-role */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/no-redundant-roles */
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useRef, useState } from 'react';
+import {
+    useAuthState,
+    useSendPasswordResetEmail,
+    // eslint-disable-next-line prettier/prettier
+    useSignInWithEmailAndPassword
+} from 'react-firebase-hooks/auth';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import auth from '../../firebase.init';
+import Loading from '../../Shared/Loading/Loading';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 function Login() {
+    const location = useLocation();
+    const [agree, setAgree] = useState(false);
+
+    const [err, setErr] = useState('');
+    const [user1] = useAuthState(auth);
+    const navigate = useNavigate();
     const [sidebar, setSidebar] = useState();
+    const emailRef = useRef('');
+    const passwordRef = useRef('');
+    const [signInWithEmailAndPassword, user2, loading, error] = useSignInWithEmailAndPassword(auth);
+
+    const [sendPasswordResetEmail, sending, error2] = useSendPasswordResetEmail(auth);
+
+    //
+
+    const from = location.state?.from?.pathname || '/';
+
+    //
+
+    // email validation
+    const validateEmail = (email) =>
+        String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+
+    const handleResetPassword = async (event) => {
+        event.preventDefault();
+        const email = emailRef.current.value.trim();
+        if (validateEmail(email)) {
+            await sendPasswordResetEmail(email);
+            toast('If user exist a password reset email sent!');
+        } else {
+            setErr('Please provide a valid email.');
+        }
+    };
+
+    const handleLogin = async (event) => {
+        event.preventDefault();
+        const email = emailRef.current.value.trim();
+        const password = passwordRef.current.value;
+        const emailCheck = validateEmail(email);
+
+        if (!email || !password) {
+            setErr('Enter a valid email and password!');
+            return;
+        }
+
+        if (password.length < 6) {
+            setErr('Password must be at least 6 char long.');
+            return;
+        }
+
+        if (validateEmail(email)) {
+            await signInWithEmailAndPassword(email, password);
+            if (user2) {
+                toast('You are logged in!');
+            } else {
+                setErr('No user found please sign up!');
+            }
+        } else {
+            setErr('Your email is invalid!');
+        }
+
+        if (error) {
+            setErr('Something Wrong. Please try again.');
+        }
+    };
+
+    if (loading) {
+        return <Loading />;
+    }
+
+    if (user1 || user2) {
+        navigate(from, { replace: true });
+    }
+
     return (
         <div className="w-full px-4 md:py-16">
-            <div className="flex flex-col items-center justify-center">
+            <form className="flex flex-col items-center justify-center">
                 <div className="mt-16 w-full rounded-xl bg-white  p-10 shadow md:w-1/2 lg:w-1/3">
                     <p
                         aria-label="Login to your account"
@@ -25,14 +113,16 @@ function Login() {
                             to="/register"
                             tabIndex={0}
                             role="link"
-                            aria-label="Sign up here"
+                            aria-label="Register"
                             className="cursor-pointer text-sm font-medium leading-none text-gray-800 hover:underline"
                         >
                             {' '}
-                            Register
+                            Sign up
                         </Link>
                     </p>
-                    <SocialLogin />
+                    <div>
+                        <SocialLogin />
+                    </div>
                     <div className="flex w-full items-center justify-between py-5">
                         <hr className="w-full bg-gray-400" />
                         <p className="px-2.5 text-base font-medium leading-4 text-gray-400">OR</p>
@@ -40,25 +130,31 @@ function Login() {
                     </div>
                     <div>
                         <label className="text-sm font-medium leading-none text-gray-800">
-                            Email
+                            Email<span className="text-red-500">*</span>
                         </label>
                         <input
-                            aria-label="enter email adress"
+                            ref={emailRef}
+                            aria-label="enter email address"
                             role="input"
                             type="email"
-                            className="mt-2 w-full rounded border bg-gray-200 py-3 pl-3 text-xs font-medium leading-none text-gray-800 focus:outline-none"
+                            className={`text-md mt-2 w-full rounded border ${
+                                err ? 'border-red-600' : 'border-sky-600'
+                            } bg-gray-100 py-3 pl-3 font-medium leading-none text-gray-800 focus:outline-none `}
                         />
                     </div>
                     <div className="mt-6  w-full">
                         <label className="text-sm font-medium leading-none text-gray-800">
-                            Password
+                            Password<span className="text-red-500">*</span>
                         </label>
                         <div className="relative flex items-center justify-center">
                             <input
+                                ref={passwordRef}
                                 aria-label="enter Password"
                                 role="input"
                                 type="password"
-                                className="mt-2 w-full rounded border bg-gray-200 py-3 pl-3 text-xs font-medium leading-none text-gray-800 focus:outline-none"
+                                className={`text-md mt-2 w-full rounded border ${
+                                    err ? 'border-red-600' : 'border-sky-600'
+                                } bg-gray-100 py-3 pl-3 font-medium leading-none text-gray-800 focus:outline-none `}
                             />
                             <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
                                 <svg
@@ -77,16 +173,46 @@ function Login() {
                         </div>
                     </div>
                     <div className="mt-8">
+                        {err ? <p className="mb-4 text-red-500">{err}</p> : ''}
+                        <div className="mb-4 flex items-center">
+                            <input
+                                id="checkbox-1"
+                                aria-describedby="checkbox-1"
+                                type="checkbox"
+                                className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-sky-600"
+                            />
+                            <label
+                                htmlFor="checkbox-1"
+                                className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"
+                            >
+                                I agree to the{' '}
+                                <a
+                                    href="/"
+                                    className="text-sky-600 hover:underline dark:text-blue-500"
+                                >
+                                    terms and conditions<span className="text-red-500">*</span>
+                                </a>
+                            </label>
+                        </div>
                         <button
+                            onClick={handleResetPassword}
+                            className="mb-4 cursor-pointer text-sm font-semibold text-gray-800 hover:text-sky-600 hover:underline"
+                        >
+                            Forget password?
+                        </button>
+                        <button
+                            type="submit"
+                            onClick={handleLogin}
                             role="button"
                             aria-label="Login"
-                            className="w-full rounded border bg-sky-700 py-4 text-sm font-semibold leading-none text-white hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-2"
+                            className="text-md w-full rounded border border-sky-600 py-4 font-bold leading-none text-sky-600 hover:bg-sky-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2"
                         >
                             Login
                         </button>
                     </div>
                 </div>
-            </div>
+            </form>
+            <ToastContainer />
         </div>
     );
 }

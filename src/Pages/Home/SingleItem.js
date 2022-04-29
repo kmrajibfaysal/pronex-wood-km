@@ -1,9 +1,16 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function SingleItem({ product }) {
     const { _id, name, seller, description, price, stock, supplier, img } = product;
+
+    const navigate = useNavigate();
+
+    const handleManageItem = (id) => {
+        navigate(`inventory/${id}`);
+    };
 
     return (
         <div>
@@ -24,8 +31,8 @@ function SingleItem({ product }) {
                         <span>Supplier: {supplier}</span> <br />
                     </p>
                     <button
+                        onClick={() => handleManageItem(_id)}
                         type="button"
-                        href="#"
                         className="inline-flex items-center rounded-lg bg-sky-700 py-2 px-5 text-center text-sm font-medium text-white hover:bg-sky-800 focus:outline-none focus:ring-4 focus:ring-sky-300 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
                     >
                         Manage
