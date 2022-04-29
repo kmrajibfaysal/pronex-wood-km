@@ -117,7 +117,7 @@ function Login() {
                             className="cursor-pointer text-sm font-medium leading-none text-gray-800 hover:underline"
                         >
                             {' '}
-                            Sign up
+                            Register
                         </Link>
                     </p>
                     <div>

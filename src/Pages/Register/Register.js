@@ -17,7 +17,7 @@ function Register() {
                         aria-label="Login to your account"
                         className="text-2xl font-extrabold leading-6 text-gray-800"
                     >
-                        Sign up for a new account
+                        Register for a new account
                     </p>
                     <p className="mt-4 text-sm font-medium leading-none text-gray-500">
                         Already have an account?{' '}
@@ -25,7 +25,7 @@ function Register() {
                             to="/login"
                             tabIndex={0}
                             role="link"
-                            aria-label="Sign up here"
+                            aria-label="Register here"
                             className="cursor-pointer text-sm font-medium leading-none text-gray-800 underline"
                         >
                             {' '}
@@ -120,7 +120,7 @@ function Register() {
                             aria-label="Login"
                             className="w-full rounded border bg-sky-700 py-4 text-sm font-semibold leading-none text-white hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-2"
                         >
-                            Sign up
+                            Register
                         </button>
                     </div>
                 </div>
