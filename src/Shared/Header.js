@@ -28,7 +28,7 @@ function Header() {
                     <button
                         onClick={handleLoginLogOutButton}
                         type="button"
-                        className="mr-3 rounded-full bg-sky-700 px-5 py-1.5 text-center text-sm font-medium text-white shadow-lg shadow-gray-300 hover:bg-sky-800 focus:outline-none focus:ring-4 focus:ring-sky-300 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800 md:mr-0"
+                        className="mr-3 rounded bg-sky-700 px-5 py-1.5 text-center text-sm font-medium text-white shadow-lg shadow-gray-300 hover:bg-sky-800 focus:outline-none focus:ring-4 focus:ring-sky-300 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800 md:mr-0"
                     >
                         {user ? 'Log out' : 'Log in'}
                     </button>
