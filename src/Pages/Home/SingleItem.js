@@ -24,12 +24,12 @@ function SingleItem({ product }) {
                             {name}
                         </h5>
                     </a>
-                    <p className="mb-3 font-normal text-gray-900 dark:text-gray-400">
+                    <div className="mb-3 font-normal text-gray-900 dark:text-gray-400">
                         <p className=" text-gray-600"> {description} </p> <br />
                         <span>Price: ৳.{price} </span> <br />
                         <span>Stock: {stock}</span> <br />
                         <span>Supplier: {supplier}</span> <br />
-                    </p>
+                    </div>
                     <button
                         onClick={() => handleManageItem(_id)}
                         type="button"

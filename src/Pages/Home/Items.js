@@ -1,15 +1,11 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import useProduct from '../../hooks/useProduct';
 import SingleItem from './SingleItem';
 
 function Items() {
-    const [products, setProducts] = useState([]);
-    useEffect(() => {
-        fetch('products.json')
-            .then((res) => res.json())
-            .then((data) => setProducts(data));
-    }, []);
+    const [products, setProducts] = useProduct();
+
     return (
         <div className="mt-12 bg-sky-100 py-6">
             <div className="container mx-auto">

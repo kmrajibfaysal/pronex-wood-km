@@ -1,17 +1,103 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/aria-role */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/no-redundant-roles */
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useRef, useState } from 'react';
+import {
+    useAuthState,
+    useCreateUserWithEmailAndPassword,
+    // eslint-disable-next-line prettier/prettier
+    useUpdateProfile
+} from 'react-firebase-hooks/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import auth from '../../firebase.init';
+import Loading from '../../Shared/Loading/Loading';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
-function Register() {
+function SignUp() {
+    const [err, setErr] = useState('');
     const [sidebar, setSidebar] = useState();
+    const userNameRef = useRef('');
+    const emailRef = useRef('');
+    const passwordRef = useRef('');
+    const confirmPasswordRef = useRef('');
+    const navigate = useNavigate();
+    const [user1] = useAuthState(auth);
+
+    // Email validation regex
+    const validateEmail = (email) =>
+        String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+
+    const validPassword = (password) => password.length >= 6;
+
+    // variable related to react-firebase hooks
+    const [createUserWithEmailAndPassword, user2, loading, error] =
+        useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+    const handleSignUp = async (event) => {
+        event.preventDefault();
+        const userName = userNameRef.current.value.trim();
+        const email = emailRef.current.value.trim();
+        const password = passwordRef.current.value;
+        const confirmPassword = confirmPasswordRef.current.value;
+        const emailCheck = validateEmail(email);
+        const passwordCheck = validPassword(password);
+
+        // input error handling
+
+        if (!userName) {
+            setErr('Please enter your name!');
+            return;
+        }
+        if (!validateEmail(email)) {
+            setErr('Enter a valid email!');
+            return;
+        }
+
+        if (!(password === confirmPassword)) {
+            setErr('Password do not match');
+            return;
+        }
+
+        if (!passwordCheck) {
+            setErr('Password must be at least 6 character long!');
+            return;
+        }
+
+        if (!userName && !email && !password) {
+            setErr('Fill up all the field!');
+            return;
+        }
+
+        // user creation if all validation pass!
+        await createUserWithEmailAndPassword(email, password);
+        toast('A verification email sent to your email!');
+        await updateProfile({ displayName: userName });
+        if (error) {
+            setErr(error.message);
+        }
+    };
+
+    if (updating || loading) {
+        return <Loading />;
+    }
+
+    if (user1 || user2) {
+        navigate('/');
+    }
+
     return (
         <div className="w-full px-4 pb-6">
-            <div className="flex flex-col items-center justify-center">
+            <form className="flex flex-col items-center justify-center">
                 <div className="mt-16 w-full rounded-xl bg-white  p-10 shadow md:w-1/2 lg:w-1/3">
                     <p
                         aria-label="Login to your account"
@@ -26,13 +112,15 @@ function Register() {
                             tabIndex={0}
                             role="link"
                             aria-label="Register here"
-                            className="cursor-pointer text-sm font-medium leading-none text-gray-800 underline"
+                            className="cursor-pointer text-sm font-medium leading-none text-gray-800 hover:underline"
                         >
                             {' '}
                             Login here
                         </Link>
                     </p>
-                    <SocialLogin />
+                    <div>
+                        <SocialLogin />
+                    </div>
                     <div className="flex w-full items-center justify-between py-5">
                         <hr className="w-full bg-gray-400" />
                         <p className="px-2.5 text-base font-medium leading-4 text-gray-400">OR</p>
@@ -40,36 +128,42 @@ function Register() {
                     </div>
                     <div>
                         <label className="text-sm font-medium leading-none text-gray-800">
-                            Username
+                            Your full name<span className="text-red-500">*</span>
                         </label>
                         <input
-                            aria-label="enter username"
+                            required
+                            ref={userNameRef}
+                            aria-label="enter email address"
                             role="input"
                             type="text"
-                            className="mt-2 w-full rounded border bg-gray-200 py-3 pl-3 text-xs font-medium leading-none text-gray-800 focus:outline-none"
+                            className="text-md mt-2 w-full rounded border border-sky-600 bg-gray-100 py-3 pl-3 font-medium leading-none text-gray-800 focus:outline-none "
                         />
                     </div>
                     <div>
                         <label className="text-sm font-medium leading-none text-gray-800">
-                            Email
+                            Email<span className="text-red-500">*</span>
                         </label>
                         <input
+                            required
+                            ref={emailRef}
                             aria-label="enter email address"
                             role="input"
                             type="email"
-                            className="mt-2 w-full rounded border bg-gray-200 py-3 pl-3 text-xs font-medium leading-none text-gray-800 focus:outline-none"
+                            className="text-md mt-2 w-full rounded border border-sky-600 bg-gray-100 py-3 pl-3 font-medium leading-none text-gray-800 focus:outline-none "
                         />
                     </div>
                     <div className="mt-6  w-full">
                         <label className="text-sm font-medium leading-none text-gray-800">
-                            Password
+                            Password<span className="text-red-500">*</span>
                         </label>
                         <div className="relative flex items-center justify-center">
                             <input
+                                required
+                                ref={passwordRef}
                                 aria-label="enter Password"
                                 role="input"
                                 type="password"
-                                className="mt-2 w-full rounded border bg-gray-200 py-3 pl-3 text-xs font-medium leading-none text-gray-800 focus:outline-none"
+                                className="text-md mt-2 w-full rounded border border-sky-600 bg-gray-100 py-3 pl-3 font-medium leading-none text-gray-800 focus:outline-none"
                             />
                             <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
                                 <svg
@@ -89,14 +183,16 @@ function Register() {
                     </div>
                     <div className="mt-6  w-full">
                         <label className="text-sm font-medium leading-none text-gray-800">
-                            Confirm Password
+                            Confirm password<span className="text-red-500">*</span>
                         </label>
                         <div className="relative flex items-center justify-center">
                             <input
+                                required
+                                ref={confirmPasswordRef}
                                 aria-label="enter Password"
                                 role="input"
                                 type="password"
-                                className="mt-2 w-full rounded border bg-gray-200 py-3 pl-3 text-xs font-medium leading-none text-gray-800 focus:outline-none"
+                                className="text-md mt-2 w-full rounded border border-sky-600 bg-gray-100 py-3 pl-3 font-medium leading-none text-gray-800 focus:outline-none"
                             />
                             <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
                                 <svg
@@ -115,18 +211,23 @@ function Register() {
                         </div>
                     </div>
                     <div className="mt-8">
+                        {err ? <p className="mb-4 text-red-500">{err}</p> : ''}
                         <button
+                            /* disabled={!!err} */
+                            onClick={handleSignUp}
+                            type="submit"
                             role="button"
                             aria-label="Login"
-                            className="w-full rounded border bg-sky-700 py-4 text-sm font-semibold leading-none text-white hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-2"
+                            className="text-md w-full rounded border border-sky-600 py-4 font-bold leading-none text-sky-600 hover:bg-sky-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2"
                         >
                             Register
                         </button>
                     </div>
                 </div>
-            </div>
+            </form>
+            <ToastContainer />
         </div>
     );
 }
 
-export default Register;
+export default SignUp;

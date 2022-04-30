@@ -1,5 +1,6 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
 import { useParams } from 'react-router-dom';
+import useProduct from '../../hooks/useProduct';
 
 function Inventory() {
     const { productId } = useParams();

@@ -5,15 +5,15 @@ import { getAuth } from 'firebase/auth';
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
-    apiKey: 'AIzaSyDYruoNu-RoQ4wO0Xn8GG-Kvkqh6In3MpA',
-    authDomain: 'pronex-wood.firebaseapp.com',
-    projectId: 'pronex-wood',
-    storageBucket: 'pronex-wood.appspot.com',
-    messagingSenderId: '168718637372',
-    appId: '1:168718637372:web:5219e9f1aadfd43ada2639',
-};
 
+const firebaseConfig = {
+    apiKey: process.env.REACT_APP_apiKey,
+    authDomain: process.env.REACT_APP_authDomain,
+    projectId: process.env.REACT_APP_projectId,
+    storageBucket: process.env.REACT_APP_storageBucket,
+    messagingSenderId: process.env.REACT_APP_messagingSenderId,
+    appId: process.env.REACT_APP_appId,
+};
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
