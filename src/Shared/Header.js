@@ -78,7 +78,7 @@ function Header() {
                         </li>
                         <li>
                             <ActiveLink to="/inventory" className="nav-link">
-                                Inventory
+                                Manage Inventory
                             </ActiveLink>
                         </li>
                         <li>

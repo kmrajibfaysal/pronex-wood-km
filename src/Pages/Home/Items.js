@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import useProduct from '../../hooks/useProduct';
+import MngInvBtn from '../../Shared/ManageInvetoryBtn/MngInvBtn';
 import SingleItem from './SingleItem';
 
 function Items() {
@@ -14,6 +15,9 @@ function Items() {
                     {products.map((product) => (
                         <SingleItem key={product._id} product={product} />
                     ))}
+                </div>
+                <div className="mt-5 flex items-center justify-center">
+                    <MngInvBtn />
                 </div>
             </div>
         </div>
