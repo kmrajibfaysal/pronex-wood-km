@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-alert */
 /* eslint-disable radix */
 /* eslint-disable no-underscore-dangle */
@@ -5,12 +7,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import './Inventory.css';
 
 function Inventory() {
     const { productId } = useParams();
     const [item, setItem] = useState({});
+    const restockRef = useRef();
 
     const [quantity, setQuantity] = useState(0);
     const [sold, setSold] = useState(0);
@@ -31,11 +35,46 @@ function Inventory() {
         const prevSold = parseInt(sold);
         const newSold = prevSold + 1;
         if (quantity > 0) {
-            setQuantity(newQuantity);
-            setSold(newSold);
+            await setQuantity(newQuantity);
+            await setSold(newSold);
+            item.quantity = newQuantity;
+            item.sold = newSold;
+
+            // database update method
+            fetch(`http://localhost:5000/inventory/${productId}`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify(item),
+            });
         } else {
             alert('Please restock item, selected item is stock out!');
         }
+    };
+
+    const handleRestock = async () => {
+        const restockQuantity = parseInt(restockRef.current.value);
+        if (!isNaN(restockQuantity) && restockQuantity > 0) {
+            const prevQuantity = parseInt(quantity);
+
+            const restockedQuantity = prevQuantity + restockQuantity;
+            await setQuantity(restockedQuantity);
+            item.quantity = restockedQuantity;
+            // database update method
+            fetch(`http://localhost:5000/inventory/${productId}`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify(item),
+            });
+            restockRef.current.value = 0;
+        } else {
+            alert('restock item must be a valid number!');
+            restockRef.current.value = 0;
+        }
+        //
     };
 
     return (
@@ -193,7 +232,7 @@ function Inventory() {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex">
+                        <div className="flex border-b-2 border-gray-200 pb-5">
                             <span className="title-font text-2xl font-medium text-gray-900">
                                 ৳.{item.price}
                             </span>
@@ -214,6 +253,22 @@ function Inventory() {
                                 >
                                     <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
                                 </svg>
+                            </button>
+                        </div>
+                        <h2 className="text-2xl">Restock item.</h2>
+                        <div className="align-center mt-4 flex justify-between">
+                            <input
+                                ref={restockRef}
+                                className="block rounded border-sky-600"
+                                type="number"
+                                name="stock"
+                                id=""
+                            />
+                            <button
+                                onClick={handleRestock}
+                                className="block rounded bg-sky-500 px-4 py-2 text-white"
+                            >
+                                Add to inventory
                             </button>
                         </div>
                     </div>
