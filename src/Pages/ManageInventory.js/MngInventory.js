@@ -71,8 +71,13 @@ function MngInventory() {
                     </tr>
                 </thead>
                 <tbody>
-                    {products.map((product) => (
-                        <SingleProductMng key={product._id} product={product} />
+                    {products.map((item) => (
+                        <SingleProductMng
+                            key={item._id}
+                            item={item}
+                            products={products}
+                            setProducts={setProducts}
+                        />
                     ))}
                 </tbody>
             </table>

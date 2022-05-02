@@ -12,7 +12,7 @@ function Items() {
             <div className="container mx-auto">
                 <h1 className="text-center text-4xl">Items</h1>
                 <div className="align-center mx-auto flex max-w-[1368px] flex-wrap justify-center">
-                    {products.map((product) => (
+                    {products.slice(0, 6).map((product) => (
                         <SingleItem key={product._id} product={product} />
                     ))}
                 </div>
