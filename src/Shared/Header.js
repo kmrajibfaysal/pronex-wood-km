@@ -28,7 +28,7 @@ function Header() {
                     <button
                         onClick={handleLoginLogOutButton}
                         type="button"
-                        className="mr-3 rounded bg-sky-700 px-5 py-1.5 text-center text-sm font-medium text-white shadow-lg shadow-gray-300 hover:bg-sky-800 focus:outline-none focus:ring-4 focus:ring-sky-300 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800 md:mr-0"
+                        className="mr-3 hidden rounded bg-sky-700 px-5 py-1.5 text-center text-sm font-medium text-white shadow-lg shadow-gray-300 hover:bg-sky-800 focus:outline-none focus:ring-4 focus:ring-sky-300 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800 md:mr-0 md:block"
                     >
                         {user ? 'Log out' : 'Log in'}
                     </button>
@@ -67,7 +67,7 @@ function Header() {
                     </button>
                 </div>
                 <div
-                    className="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto"
+                    className="hidden w-full items-center justify-end md:order-1 md:flex md:w-auto"
                     id="mobile-menu-4"
                 >
                     <ul className="mt-4 flex flex-col md:mt-0 md:flex-row md:space-x-8 md:text-sm md:font-medium">
@@ -92,6 +92,13 @@ function Header() {
                             </ActiveLink>
                         </li>
                     </ul>
+                    <button
+                        onClick={handleLoginLogOutButton}
+                        type="button"
+                        className=" mx-auto mr-3  rounded bg-sky-700 px-5 py-1.5 text-center text-sm font-medium text-white shadow-lg shadow-gray-300 hover:bg-sky-800 focus:outline-none focus:ring-4 focus:ring-sky-300 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800 md:mr-0 md:hidden"
+                    >
+                        {user ? 'Log out' : 'Log in'}
+                    </button>
                 </div>
             </div>
         </nav>
