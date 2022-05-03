@@ -86,7 +86,7 @@ function Inventory() {
                 </div>
                 <div className="mx-auto flex flex-wrap lg:w-4/5">
                     <img
-                        alt="ecommerce"
+                        alt="Product img"
                         className="w-full rounded border border-gray-200 object-cover object-center lg:w-1/2"
                         src={item.img}
                     />

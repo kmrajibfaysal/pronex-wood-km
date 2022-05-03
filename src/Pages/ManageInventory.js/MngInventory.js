@@ -4,14 +4,16 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import useProduct from '../../hooks/useProduct';
 import SingleProductMng from './singleProductMng';
 
 function MngInventory() {
     const [products, setProducts] = useProduct();
+    const navigate = useNavigate();
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <div className="p-4">
+            <div className="flex flex-col items-center justify-between p-4 md:flex-row">
                 <div>
                     <label htmlFor="table-search" className="sr-only">
                         Search
@@ -41,6 +43,7 @@ function MngInventory() {
                 </div>
                 <div>
                     <button
+                        onClick={() => navigate('/addItem')}
                         className="mb-4 inline-flex items-center rounded-lg bg-sky-700 py-2 px-5 text-center text-sm font-medium text-white hover:bg-sky-800 focus:outline-none focus:ring-4 focus:ring-sky-300 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
                         type="button"
                     >
