@@ -18,20 +18,34 @@ function Header() {
 
     return (
         <nav className=" rounded border-gray-200 bg-sky-50 px-2 py-2.5 transition-all duration-200 dark:bg-gray-800 sm:px-4">
-            <div className="container mx-auto flex flex-wrap items-center justify-between">
+            <div className="container mx-auto flex items-center justify-between">
                 <ActiveLink to="/" className="flex items-center">
-                    <span className="self-center whitespace-nowrap text-xl font-semibold text-gray-700 dark:text-white">
+                    <span className="text-md self-center whitespace-nowrap font-semibold text-gray-700 dark:text-white lg:text-xl">
                         Pronex-Wood
                     </span>
                 </ActiveLink>
-                <div className="flex md:order-2">
-                    <button
-                        onClick={handleLoginLogOutButton}
-                        type="button"
-                        className="mr-3 hidden rounded bg-sky-700 px-5 py-1.5 text-center text-sm font-medium text-white shadow-lg shadow-gray-300 hover:bg-sky-800 focus:outline-none focus:ring-4 focus:ring-sky-300 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800 md:mr-0 md:block"
-                    >
-                        {user ? 'Log out' : 'Log in'}
-                    </button>
+                <div className="flex items-center md:order-2">
+                    <div className="flex items-center">
+                        <ul className="mt-4 mr-4 flex items-center  md:mt-0 md:space-x-4 md:text-sm md:font-medium lg:space-x-8">
+                            <li>
+                                <ActiveLink to="/inventory" className="nav-link">
+                                    Add item
+                                </ActiveLink>
+                            </li>
+                            <li>
+                                <ActiveLink to="/blogs" className="nav-link">
+                                    My items
+                                </ActiveLink>
+                            </li>
+                        </ul>
+                        <button
+                            onClick={handleLoginLogOutButton}
+                            type="button"
+                            className="mr-3 hidden rounded bg-sky-700 px-5 py-1.5 text-center text-sm font-medium text-white shadow-lg shadow-gray-300 hover:bg-sky-800 focus:outline-none focus:ring-4 focus:ring-sky-300 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800 md:mr-0 md:block"
+                        >
+                            {user ? 'Log out' : 'Log in'}
+                        </button>
+                    </div>
                     <button
                         data-collapse-toggle="mobile-menu-4"
                         type="button"
@@ -70,7 +84,7 @@ function Header() {
                     className="hidden w-full items-center justify-end md:order-1 md:flex md:w-auto"
                     id="mobile-menu-4"
                 >
-                    <ul className="mt-4 flex flex-col md:mt-0 md:flex-row md:space-x-8 md:text-sm md:font-medium">
+                    <ul className="mt-4 flex flex-col md:mt-0 md:flex-row md:space-x-4 md:text-sm md:font-medium lg:space-x-8 lg:text-xl">
                         <li>
                             <ActiveLink to="/home" className="nav-link" aria-current="page">
                                 Products

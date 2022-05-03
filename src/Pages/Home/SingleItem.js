@@ -9,7 +9,7 @@ function SingleItem({ product }) {
     const navigate = useNavigate();
 
     const handleManageItem = (id) => {
-        navigate(`inventory/${id}`);
+        navigate(`/inventory/${id}`);
     };
 
     return (
