@@ -4,7 +4,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function SingleItem({ product }) {
-    const { _id, name, seller, description, price, stock, supplier, img } = product;
+    const { _id, name, seller, description, price, quantity, supplier, img } = product;
 
     const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ function SingleItem({ product }) {
                     <div className="mb-3 font-normal text-gray-900 dark:text-gray-400">
                         <p className=" text-gray-600"> {description} </p> <br />
                         <span>Price: ৳.{price} </span> <br />
-                        <span>Stock: {stock}</span> <br />
+                        <span>Quantity: {quantity}</span> <br />
                         <span>Supplier: {supplier}</span> <br />
                     </div>
                     <button
