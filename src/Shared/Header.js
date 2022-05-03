@@ -28,12 +28,12 @@ function Header() {
                     <div className="flex items-center">
                         <ul className="mt-4 mr-4 flex items-center  md:mt-0 md:space-x-4 md:text-sm md:font-medium lg:space-x-8">
                             <li>
-                                <ActiveLink to="/inventory" className="nav-link">
+                                <ActiveLink to="/addItem" className="nav-link">
                                     Add item
                                 </ActiveLink>
                             </li>
                             <li>
-                                <ActiveLink to="/blogs" className="nav-link">
+                                <ActiveLink to="/myItems" className="nav-link">
                                     My items
                                 </ActiveLink>
                             </li>
