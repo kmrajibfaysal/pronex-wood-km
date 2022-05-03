@@ -14,9 +14,9 @@ function SingleItem({ product }) {
 
     return (
         <div>
-            <div className="mx-3 my-3 h-[600px] max-w-xs rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800">
+            <div className="mx-3 my-3 max-h-[600px] max-w-xs rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800">
                 <a href="#">
-                    <img className="rounded-t-lg" src={img} alt="" />
+                    <img className="mx-auto max-h-[250px] rounded-t-lg pt-2" src={img} alt="" />
                 </a>
                 <div className="p-5">
                     <a href="#">
