@@ -51,7 +51,10 @@ function AddItem() {
     }, []);
 
     return (
-        <form className="flex- mt-4 items-center justify-center md:mt-6" onSubmit={handleOnSubmit}>
+        <form
+            className="mt-4 flex-col items-center justify-center md:mt-6"
+            onSubmit={handleOnSubmit}
+        >
             <h1 className="mx-auto  mb-6 rounded py-2  text-center text-3xl font-bold text-sky-700">
                 Add Item
             </h1>

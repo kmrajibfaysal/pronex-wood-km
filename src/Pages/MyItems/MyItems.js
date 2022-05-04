@@ -15,7 +15,7 @@ const MyItems = () => {
     const filteredItem = products.filter((product) => product.managerId === user.uid);
     if (filteredItem.length === 0) {
         return (
-            <div className="mt-6 flex flex-col items-center justify-center">
+            <div className="mt-6 flex flex-col items-center justify-center pb-24">
                 <h1 className="text-2xl md:text-4xl">You have not added any item!</h1>
                 <div className="mt-6 flex flex-col items-center justify-center">
                     <span className="block text-sm md:text-xl">

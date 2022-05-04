@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Footer() {
     return (
-        <footer className=" bg-sky-600 p-4 text-white shadow dark:bg-gray-800 md:px-6 md:py-8">
+        <footer className="bg-sky-600 p-4 text-white shadow dark:bg-gray-800 md:px-6 md:py-8">
             <div className="container mx-auto sm:flex sm:items-center sm:justify-between">
                 <a href="/" className="mb-4 flex items-center sm:mb-0">
                     {/* <img src={#} alt="" /> */}

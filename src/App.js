@@ -15,38 +15,40 @@ function App() {
         <div>
             <Header />
 
-            <div className="pt-12">
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route
-                        path="/inventory/:productId"
-                        element={
-                            <RequireAuth>
-                                <Inventory />
-                            </RequireAuth>
-                        }
-                    />
-                    <Route
-                        path="/addItem"
-                        element={
-                            <RequireAuth>
-                                <AddItem />
-                            </RequireAuth>
-                        }
-                    />
-                    <Route
-                        path="/myItems"
-                        element={
-                            <RequireAuth>
-                                <MyItems />
-                            </RequireAuth>
-                        }
-                    />
-                    <Route path="/inventory" element={<MngInventory />} />
-                </Routes>
+            <div className="flex h-[100vh] flex-col justify-between pt-12">
+                <div>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/home" element={<Home />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route
+                            path="/inventory/:productId"
+                            element={
+                                <RequireAuth>
+                                    <Inventory />
+                                </RequireAuth>
+                            }
+                        />
+                        <Route
+                            path="/addItem"
+                            element={
+                                <RequireAuth>
+                                    <AddItem />
+                                </RequireAuth>
+                            }
+                        />
+                        <Route
+                            path="/myItems"
+                            element={
+                                <RequireAuth>
+                                    <MyItems />
+                                </RequireAuth>
+                            }
+                        />
+                        <Route path="/inventory" element={<MngInventory />} />
+                    </Routes>
+                </div>
                 <Footer />
             </div>
         </div>
