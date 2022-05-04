@@ -12,7 +12,7 @@ function MngInventory() {
     const [products, setProducts] = useProduct();
     const navigate = useNavigate();
     return (
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div className="container relative mx-auto overflow-x-auto  sm:rounded-lg">
             <div className="flex flex-col items-center justify-between p-4 md:flex-row">
                 <div>
                     <label htmlFor="table-search" className="sr-only">
@@ -41,7 +41,7 @@ function MngInventory() {
                         />
                     </div>
                 </div>
-                <div>
+                <div className="mt-3">
                     <button
                         onClick={() => navigate('/addItem')}
                         className="mb-4 inline-flex items-center rounded-lg bg-sky-700 py-2 px-5 text-center text-sm font-medium text-white hover:bg-sky-800 focus:outline-none focus:ring-4 focus:ring-sky-300 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
