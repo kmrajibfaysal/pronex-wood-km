@@ -47,7 +47,14 @@ function App() {
                                 </RequireAuth>
                             }
                         />
-                        <Route path="/inventory" element={<MngInventory />} />
+                        <Route
+                            path="/inventory"
+                            element={
+                                <RequireAuth>
+                                    <MngInventory />
+                                </RequireAuth>
+                            }
+                        />
                         <Route path="/addItem/success" element={<Success />} />
                     </Routes>
                 </div>
