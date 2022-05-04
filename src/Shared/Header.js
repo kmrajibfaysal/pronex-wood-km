@@ -18,7 +18,7 @@ function Header() {
     };
 
     return (
-        <nav className=" rounded border-gray-200 bg-gray-100 px-2 py-2.5 font-bold transition-all duration-200 dark:bg-gray-800 sm:px-4">
+        <nav className="z-50 rounded border-gray-200 bg-gray-100 px-2 py-2.5 font-bold transition-all duration-200 dark:bg-gray-800 sm:px-4 md:fixed md:top-0 md:left-0 md:right-0">
             <ActiveLink to="/" className=" block w-28 translate-y-8 md:hidden">
                 <span className="text-md self-center whitespace-nowrap font-semibold text-gray-700 dark:text-white lg:text-xl">
                     Pronex-Wood
