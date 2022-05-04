@@ -1,15 +1,30 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
-import useProduct from '../../hooks/useProduct';
+import auth from '../../firebase.init';
 import SingleProductMng from './singleProductMng';
 
 function MngInventory() {
-    const [products, setProducts] = useProduct();
+    const [products, setProducts] = useState([]);
+    const [user] = useAuthState(auth);
+    useEffect(() => {
+        fetch('http://localhost:5000/mngInventory', {
+            method: 'GET',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+                email: user.email,
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => setProducts(data));
+    }, []);
+
     const navigate = useNavigate();
     return (
         <div className="container relative mx-auto overflow-x-auto  sm:rounded-lg">

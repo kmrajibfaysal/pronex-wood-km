@@ -92,7 +92,7 @@ function Login() {
                 })
                 .then(() => navigate(from, { replace: true }));
 
-            // jwt verification
+            //
             if (user2) {
                 toast('You are logged in!');
             } else {
@@ -111,9 +111,9 @@ function Login() {
         return <Loading />;
     }
 
-    // if (user1 || user2) {
+    /*   // if (user1 || user2) {
     //     // navigate(from, { replace: true });
-    // }
+    // } */
 
     return (
         <div className="w-full px-4 md:py-16">
