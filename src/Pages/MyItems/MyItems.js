@@ -35,11 +35,14 @@ const MyItems = () => {
         );
     }
     return (
-        <div className="container mx-auto">
-            {filteredItem.map((product) => (
-                <SingleItem key={product._id} product={product} />
-            ))}
-        </div>
+        <>
+            <h1 className="my-5 text-center text-4xl font-bold">Your items</h1>
+            <div className="align-center mx-auto flex max-w-[1368px] flex-wrap justify-center">
+                {filteredItem.map((product) => (
+                    <SingleItem key={product._id} product={product} />
+                ))}
+            </div>
+        </>
     );
 };
 

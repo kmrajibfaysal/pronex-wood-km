@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import AddItem from './Pages/AddItem/AddItem';
+import Success from './Pages/AddItem/Success';
 import Home from './Pages/Home/Home';
 import Inventory from './Pages/InventoryDetail/Inventory';
 import Login from './Pages/Login/Login';
@@ -47,6 +48,7 @@ function App() {
                             }
                         />
                         <Route path="/inventory" element={<MngInventory />} />
+                        <Route path="/addItem/success" element={<Success />} />
                     </Routes>
                 </div>
                 <Footer />

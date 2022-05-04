@@ -3,12 +3,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 function AddItem() {
     const [user] = useAuthState(auth);
+    const navigate = useNavigate();
 
     // input value References
 
@@ -32,8 +34,18 @@ function AddItem() {
         const price = parseInt(priceRef.current.value);
         const quantity = parseInt(quantityRef.current.value);
         const img = imgRef.current.value;
-        const newItem = { managerId, name, category, supplier, description, price, quantity, img };
-        console.log(newItem);
+        const sold = 0;
+        const newItem = {
+            managerId,
+            name,
+            category,
+            supplier,
+            description,
+            price,
+            quantity,
+            img,
+            sold,
+        };
         // Sends post req to server
         fetch(`http://localhost:5000/addItem`, {
             method: 'POST',
@@ -43,12 +55,12 @@ function AddItem() {
             body: JSON.stringify(newItem),
         })
             .then((res) => res.json())
-            .then((data) => console.log('Successfully added!', data));
+            .then((data) => {
+                if (data.acknowledged === true) {
+                    navigate('/addItem/success');
+                }
+            });
     };
-
-    useEffect(() => {
-        console.log(user.uid);
-    }, []);
 
     return (
         <form
