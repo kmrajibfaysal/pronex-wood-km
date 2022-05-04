@@ -14,7 +14,7 @@ function MngInventory() {
     const [products, setProducts] = useState([]);
     const [user] = useAuthState(auth);
     useEffect(() => {
-        fetch('https://dry-dusk-31189.herokuapp.com/mngInventory', {
+        fetch('https://dry-dusk-31189.herokuapp.com/inventory', {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`,
