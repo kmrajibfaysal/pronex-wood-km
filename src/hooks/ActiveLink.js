@@ -10,6 +10,7 @@ function ActiveLink({ children, to, ...props }) {
         <Link
             style={{
                 color: match ? 'rgb(3 105 161)' : '',
+                fontWeight: match ? 'bold' : '',
             }}
             to={to}
             {...props}

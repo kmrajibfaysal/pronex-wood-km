@@ -9,7 +9,7 @@ function Banner() {
                 <div className="mb-5 w-11/12 flex-col items-center justify-center sm:mb-10  sm:w-2/3 lg:flex">
                     <h1 className="text-center text-2xl font-black leading-7 text-gray-800 sm:text-3xl md:text-4xl md:leading-10 lg:text-5xl xl:text-6xl">
                         The One place to store all of your
-                        <span className="text-sky-700">Furniture</span>
+                        <span className="text-sky-700"> Furniture </span>
                         crafted by top class material
                     </h1>
                     <p className="mt-5 text-center text-sm font-normal text-gray-400 sm:mt-10 sm:text-lg lg:w-10/12">
