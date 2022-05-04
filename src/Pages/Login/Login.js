@@ -19,6 +19,7 @@ import Loading from '../../Shared/Loading/Loading';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 function Login() {
+    const [token, setToken] = useState({});
     const location = useLocation();
     const [agree, setAgree] = useState(false);
 
@@ -75,6 +76,23 @@ function Login() {
 
         if (validateEmail(email)) {
             await signInWithEmailAndPassword(email, password);
+
+            // jwt
+
+            fetch(`http://localhost:5000/login`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    localStorage.setItem('accessToken', data.accessToken);
+                })
+                .then(() => navigate(from, { replace: true }));
+
+            // jwt verification
             if (user2) {
                 toast('You are logged in!');
             } else {
@@ -93,9 +111,9 @@ function Login() {
         return <Loading />;
     }
 
-    if (user1 || user2) {
-        navigate(from, { replace: true });
-    }
+    // if (user1 || user2) {
+    //     // navigate(from, { replace: true });
+    // }
 
     return (
         <div className="w-full px-4 md:py-16">
