@@ -12,7 +12,7 @@ import {
     useUpdateProfile
 } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
@@ -225,7 +225,6 @@ function SignUp() {
                     </div>
                 </div>
             </form>
-            <ToastContainer />
         </div>
     );
 }

@@ -12,7 +12,7 @@ import {
     useSignInWithEmailAndPassword
 } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
@@ -32,6 +32,10 @@ function Login() {
     const [signInWithEmailAndPassword, user2, loading, error] = useSignInWithEmailAndPassword(auth);
 
     const [sendPasswordResetEmail, sending, error2] = useSendPasswordResetEmail(auth);
+
+    if (loading) {
+        return <Loading />;
+    }
 
     //
 
@@ -89,8 +93,7 @@ function Login() {
                 .then((res) => res.json())
                 .then((data) => {
                     localStorage.setItem('accessToken', data.accessToken);
-                })
-                .then(() => navigate(from, { replace: true }));
+                });
 
             //
             if (user2) {
@@ -230,7 +233,6 @@ function Login() {
                     </div>
                 </div>
             </form>
-            <ToastContainer />
         </div>
     );
 }

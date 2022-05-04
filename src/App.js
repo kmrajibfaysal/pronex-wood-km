@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import AddItem from './Pages/AddItem/AddItem';
 import Success from './Pages/AddItem/Success';
 import Home from './Pages/Home/Home';
@@ -16,7 +17,7 @@ function App() {
         <div>
             <Header />
 
-            <div className="flex h-[100vh] flex-col justify-between pt-12">
+            <div className="flex h-[100vh] flex-col justify-between md:pt-12">
                 <div>
                     <Routes>
                         <Route path="/" element={<Home />} />
@@ -58,6 +59,7 @@ function App() {
                         <Route path="/addItem/success" element={<Success />} />
                     </Routes>
                 </div>
+                <ToastContainer />
                 <Footer />
             </div>
         </div>
