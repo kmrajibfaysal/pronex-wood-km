@@ -4,6 +4,7 @@ import Success from './Pages/AddItem/Success';
 import Home from './Pages/Home/Home';
 import Inventory from './Pages/InventoryDetail/Inventory';
 import Login from './Pages/Login/Login';
+import MngInventory from './Pages/ManageInventory.js/MngInventory';
 import MyItems from './Pages/MyItems/MyItems';
 import Register from './Pages/Register/Register';
 import Footer from './Shared/Footer/Footer';
@@ -46,7 +47,14 @@ function App() {
                                 </RequireAuth>
                             }
                         />
-
+                        <Route
+                            path="/inventory"
+                            element={
+                                <RequireAuth>
+                                    <MngInventory />
+                                </RequireAuth>
+                            }
+                        />
                         <Route path="/addItem/success" element={<Success />} />
                     </Routes>
                 </div>

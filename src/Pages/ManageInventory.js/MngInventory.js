@@ -8,10 +8,13 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import Loading from '../../Shared/Loading/Loading';
 import SingleProductMng from './singleProductMng';
 
 function MngInventory() {
+    const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([]);
+    const navigate = useNavigate();
     const [user] = useAuthState(auth);
     useEffect(() => {
         fetch('https://dry-dusk-31189.herokuapp.com/inventory', {
@@ -22,10 +25,14 @@ function MngInventory() {
             },
         })
             .then((res) => res.json())
-            .then((data) => setProducts(data));
+            .then((data) => setProducts(data))
+            .then(() => setLoading(false));
     }, []);
 
-    const navigate = useNavigate();
+    if (loading) {
+        return <Loading />;
+    }
+
     return (
         <div className="container relative mx-auto overflow-x-auto  sm:rounded-lg">
             <div className="flex flex-col items-center justify-between p-4 md:flex-row">

@@ -12,8 +12,10 @@ const MyItems = () => {
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
     const [products] = useProduct();
+
     const filteredItem = products.filter((product) => product.managerId === user.uid);
-    if (filteredItem.length === 0) {
+
+    if (!filteredItem) {
         return (
             <div className="mt-6 flex flex-col items-center justify-center pb-24">
                 <h1 className="text-2xl md:text-4xl">You have not added any item!</h1>

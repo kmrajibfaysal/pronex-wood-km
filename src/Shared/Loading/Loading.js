@@ -2,10 +2,10 @@ import React from 'react';
 
 function Loading() {
     return (
-        <div className="align-center my-8 flex w-full justify-center p-8">
+        <div className="my-8 flex w-full items-center justify-center p-8">
             <svg
                 role="status"
-                className="mr-2 inline h-8 w-8 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
+                className="mr-2 inline h-8 w-8 animate-spin fill-sky-600 text-gray-200 dark:text-gray-600"
                 viewBox="0 0 100 101"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"

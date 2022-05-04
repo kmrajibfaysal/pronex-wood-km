@@ -111,9 +111,9 @@ function Login() {
         return <Loading />;
     }
 
-    /*   // if (user1 || user2) {
-    //     // navigate(from, { replace: true });
-    // } */
+    if (user1 || user2) {
+        navigate(from, { replace: true });
+    }
 
     return (
         <div className="w-full px-4 md:py-16">
