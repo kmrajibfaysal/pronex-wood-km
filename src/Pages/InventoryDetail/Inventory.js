@@ -21,7 +21,7 @@ function Inventory() {
     const [sold, setSold] = useState(0);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/inventory/${productId}`)
+        fetch(`https://dry-dusk-31189.herokuapp.com/inventory/${productId}`)
             .then((res) => res.json())
             .then((data) => {
                 setItem(data);
@@ -42,7 +42,7 @@ function Inventory() {
             item.sold = newSold;
 
             // database update method
-            fetch(`http://localhost:5000/inventory/${productId}`, {
+            fetch(`https://dry-dusk-31189.herokuapp.com/inventory/${productId}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json',
@@ -63,7 +63,7 @@ function Inventory() {
             await setQuantity(restockedQuantity);
             item.quantity = restockedQuantity;
             // database update method
-            fetch(`http://localhost:5000/inventory/${productId}`, {
+            fetch(`https://dry-dusk-31189.herokuapp.com/inventory/${productId}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json',

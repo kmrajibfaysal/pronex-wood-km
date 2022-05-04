@@ -14,7 +14,7 @@ function SingleProductMng({ item, products, setProducts }) {
     const handleDelete = () => {
         if (window.confirm('Are you sure you want to delete?')) {
             console.log('deleted');
-            fetch(`http://localhost:5000/inventory/${_id}`, {
+            fetch(`https://dry-dusk-31189.herokuapp.com/inventory/${_id}`, {
                 method: 'DELETE',
                 headers: {
                     'content-type': 'application/json',

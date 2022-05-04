@@ -47,7 +47,7 @@ function AddItem() {
             sold,
         };
         // Sends post req to server
-        fetch(`http://localhost:5000/addItem`, {
+        fetch(`https://dry-dusk-31189.herokuapp.com/addItem`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
