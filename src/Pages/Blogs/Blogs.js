@@ -12,12 +12,12 @@ function Blogs() {
                     <h1 className="break-normal pt-6 pb-2 font-sans text-3xl font-bold text-gray-900 md:text-4xl">
                         👋 Welcome to Popular Developer FAQ!
                     </h1>
-                    <p className="text-sm font-normal text-gray-600 md:text-base">
+                    <div className="text-sm font-normal text-gray-600 md:text-base">
                         Published 05 May 2022
-                    </p>
+                    </div>
                 </div>
 
-                <p className="py-6">
+                <div className="py-6">
                     <span className="font-sans text-2xl font-bold">
                         1. Difference between Javascript and Nodejs
                     </span>{' '}
@@ -27,8 +27,8 @@ function Blogs() {
                         scripting and nodejs is a scripting language for server side based on Google
                         chrome v8 engine.
                     </blockquote>
-                </p>
-                <p className="py-6">
+                </div>
+                <div className="py-6">
                     <span className="font-sans text-2xl font-bold">
                         2. When should you use nodejs and when should you use mongodb
                     </span>{' '}
@@ -40,8 +40,8 @@ function Blogs() {
                         And mongodb is used to store various type of data as it is knows as no sql
                         database
                     </blockquote>
-                </p>
-                <p className="py-6">
+                </div>
+                <div className="py-6">
                     <span className="font-sans text-2xl font-bold">
                         3. Differences between sql and nosql databases.
                     </span>{' '}
@@ -53,8 +53,8 @@ function Blogs() {
                         horizontally scalable obj based database where sequences of data is not
                         important.
                     </blockquote>
-                </p>
-                <p className="py-6">
+                </div>
+                <div className="py-6">
                     <span className="font-sans text-2xl font-bold">
                         4. What is the purpose of jwt and how does it work
                     </span>{' '}
@@ -64,7 +64,7 @@ function Blogs() {
                         mechanism of encoding information and pull that out when needed to verify
                         whether the owner of this data is authenticated or not.
                     </blockquote>
-                </p>
+                </div>
             </div>
 
             <div className="px-4 py-6 text-base text-gray-500 md:text-sm">
