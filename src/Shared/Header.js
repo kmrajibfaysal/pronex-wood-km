@@ -103,7 +103,7 @@ function Header() {
                     <ul className="mt-4 flex flex-col items-center justify-center md:mt-0 md:flex-row md:space-x-4 md:text-sm md:font-medium lg:space-x-8 lg:text-xl">
                         <li>
                             <ActiveLink to="/" className="nav-link" aria-current="page">
-                                Products
+                                Home
                             </ActiveLink>
                         </li>
                         <li>
