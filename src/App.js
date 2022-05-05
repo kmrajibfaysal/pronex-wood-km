@@ -7,6 +7,7 @@ import Inventory from './Pages/InventoryDetail/Inventory';
 import Login from './Pages/Login/Login';
 import MngInventory from './Pages/ManageInventory.js/MngInventory';
 import MyItems from './Pages/MyItems/MyItems';
+import Blogs from './Pages/Register/Blogs/Blogs';
 import Register from './Pages/Register/Register';
 import Footer from './Shared/Footer/Footer';
 import Header from './Shared/Header';
@@ -24,6 +25,7 @@ function App() {
                         <Route path="/home" element={<Home />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
+                        <Route path="/blogs" element={<Blogs />} />
                         <Route
                             path="/inventory/:productId"
                             element={

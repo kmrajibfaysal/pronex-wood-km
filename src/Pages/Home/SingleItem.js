@@ -25,7 +25,8 @@ function SingleItem({ product }) {
                         </h5>
                     </a>
                     <div className="mb-3 font-normal text-gray-900 dark:text-gray-400">
-                        <p className=" text-gray-600"> {description} </p> <br />
+                        <p className=" text-gray-600"> {`${description.slice(0, 55)}...`} </p>{' '}
+                        <br />
                         <span>Price: ৳.{price} </span> <br />
                         <span>Quantity: {quantity}</span> <br />
                         <span>Supplier: {supplier}</span> <br />
