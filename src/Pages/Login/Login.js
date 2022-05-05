@@ -56,7 +56,7 @@ function Login() {
         const email = emailRef.current.value.trim();
         if (validateEmail(email)) {
             await sendPasswordResetEmail(email);
-            toast('If user exist a password reset email sent!');
+            toast('Password reset email sent!');
         } else {
             setErr('Please provide a valid email.');
         }
@@ -216,7 +216,7 @@ function Login() {
                             </label>
                         </div>
                         <button
-                            onClick={handleResetPassword}
+                            onClick={() => navigate('/reset')}
                             className="mb-4 cursor-pointer text-sm font-semibold text-gray-800 hover:text-sky-600 hover:underline"
                         >
                             Forget password?

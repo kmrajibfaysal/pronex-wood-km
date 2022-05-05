@@ -8,10 +8,11 @@ import React, { useRef, useState } from 'react';
 import {
     useAuthState,
     useCreateUserWithEmailAndPassword,
+    useSendEmailVerification,
     // eslint-disable-next-line prettier/prettier
     useUpdateProfile
 } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
@@ -19,6 +20,7 @@ import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 function SignUp() {
     const [err, setErr] = useState('');
+    const location = useLocation();
     const [sidebar, setSidebar] = useState();
     const userNameRef = useRef('');
     const emailRef = useRef('');
@@ -26,6 +28,8 @@ function SignUp() {
     const confirmPasswordRef = useRef('');
     const navigate = useNavigate();
     const [user1] = useAuthState(auth);
+
+    const from = location.state?.from?.pathname || '/';
 
     // Email validation regex
     const validateEmail = (email) =>
@@ -39,7 +43,9 @@ function SignUp() {
 
     // variable related to react-firebase hooks
     const [createUserWithEmailAndPassword, user2, loading, error] =
-        useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+        useCreateUserWithEmailAndPassword(auth);
+
+    const [sendEmailVerification, sending] = useSendEmailVerification(auth);
 
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
@@ -82,6 +88,9 @@ function SignUp() {
         await createUserWithEmailAndPassword(email, password);
         toast('A verification email sent to your email!');
         await updateProfile({ displayName: userName });
+        await sendEmailVerification(email);
+        navigate('/verify');
+
         if (error) {
             setErr(error.message);
         }
@@ -91,8 +100,12 @@ function SignUp() {
         return <Loading />;
     }
 
+    if (sending) {
+        return <Loading />;
+    }
+
     if (user1 || user2) {
-        navigate('/');
+        navigate(from, { replace: true });
     }
 
     return (

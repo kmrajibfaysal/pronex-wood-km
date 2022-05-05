@@ -12,6 +12,9 @@ import MngInventory from './Pages/ManageInventory.js/MngInventory';
 import MyItems from './Pages/MyItems/MyItems';
 import NotFound from './Pages/NotFound/NotFound';
 import Register from './Pages/Register/Register';
+import ResetPassword from './Pages/ResetPassword/ResetPassword';
+import ResetSuccess from './Pages/ResetPassword/ResetSuccess';
+import VerifyEmail from './Pages/VerifyEmail/VerifyEmail';
 import Footer from './Shared/Footer/Footer';
 import Header from './Shared/Header';
 import RequireAuth from './Shared/RequireAuth/RequireAuth';
@@ -70,6 +73,9 @@ function App() {
                             }
                         />
                         <Route path="/contact" element={<Contact />} />
+                        <Route path="/reset" element={<ResetPassword />} />
+                        <Route path="/resetSuccess" element={<ResetSuccess />} />
+                        <Route path="/verify" element={<VerifyEmail />} />
                         <Route path="/addItem/success" element={<Success />} />
                         <Route path="/*" element={<NotFound />} />
                     </Routes>
