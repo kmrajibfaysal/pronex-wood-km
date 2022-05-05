@@ -10,16 +10,14 @@ function Success() {
                     Your item has been added to inventory!
                 </h1>
                 <div className="mt-6 flex flex-col items-center justify-center">
-                    <span className="block text-sm md:text-xl">
-                        Check out all the items in the inventory.
-                    </span>
+                    <span className="block text-sm md:text-xl">Check out your added items.</span>
                     <div className="mt-3 flex flex-col ">
                         <button
-                            onClick={() => navigate('/inventory')}
+                            onClick={() => navigate('/myItems')}
                             className="my-4 block items-center rounded-lg bg-sky-700 py-2 px-5 text-center text-sm font-medium text-white hover:bg-sky-600 focus:outline-none focus:ring-4 focus:ring-sky-300 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
                             type="button"
                         >
-                            Inventory
+                            My Items
                         </button>
                         <span className="block text-sm md:text-xl">Want to add more?</span>
                         <button
