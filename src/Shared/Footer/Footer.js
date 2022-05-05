@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Logo from '../../Logo.png';
 
 function Footer() {
     return (
@@ -7,8 +8,8 @@ function Footer() {
             <div className="container mx-auto sm:flex sm:items-center sm:justify-between">
                 <a href="/" className="mb-4 flex items-center sm:mb-0">
                     {/* <img src={#} alt="" /> */}
-
-                    <span className="ml-2 self-center whitespace-nowrap text-2xl font-bold dark:text-white">
+                    <img className="mr-2 h-6 w-6" src={Logo} alt="" />
+                    <span className="self-center whitespace-nowrap text-xl font-bold dark:text-white">
                         Pronex-Wood
                     </span>
                 </a>

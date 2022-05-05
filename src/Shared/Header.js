@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-expressions */
-/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
@@ -7,6 +6,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../firebase.init';
 import ActiveLink from '../hooks/ActiveLink';
+import Logo from '../Logo.png';
 
 function Header() {
     const [open, setOpen] = useState(false);
@@ -19,15 +19,17 @@ function Header() {
 
     return (
         <nav className="z-50 rounded border-gray-200 bg-gradient-to-b from-sky-200 to-white px-2 py-2.5 font-bold transition-all duration-200 dark:bg-gray-800 sm:px-4 md:fixed md:top-0 md:left-0 md:right-0">
-            <ActiveLink to="/" className=" block w-28 translate-y-8 md:hidden">
-                <span className="text-md self-center whitespace-nowrap font-semibold text-gray-700 dark:text-white lg:text-xl">
+            <ActiveLink to="/" className="flex w-28 translate-y-8 items-center md:hidden">
+                <img className="mr-2 h-6 w-6" src={Logo} alt="" />
+                <span className="text-md self-center whitespace-nowrap font-semibold text-gray-700 dark:text-white md:text-xl lg:text-xl">
                     Pronex-Wood
                 </span>
             </ActiveLink>
             <div className="container mx-auto flex flex-col items-end md:flex-row md:items-center md:justify-between">
                 <div className="hidden md:block">
                     <ActiveLink to="/" className="flex items-center">
-                        <span className="text-md self-center whitespace-nowrap font-semibold text-gray-700 dark:text-white lg:text-xl">
+                        <img className="mr-2 h-6 w-6" src={Logo} alt="" />
+                        <span className="text-md self-center whitespace-nowrap font-semibold text-gray-700 dark:text-white md:text-xl lg:text-xl">
                             Pronex-Wood
                         </span>
                     </ActiveLink>

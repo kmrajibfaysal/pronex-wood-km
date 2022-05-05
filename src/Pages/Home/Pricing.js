@@ -60,7 +60,7 @@ function Pricing() {
                         </div>
                     </div>
 
-                    <div className="mx-auto my-4 w-80 rounded-3xl border-4 border-white bg-gray-900 p-8 text-center text-white shadow-xl md:mx-0 md:w-96  md:scale-110 md:transform">
+                    <div className="relative mx-auto my-4 w-80 rounded-3xl border-4 border-white bg-gray-900 p-8 text-center text-white shadow-xl md:mx-0  md:w-96 md:scale-110 md:transform">
                         <h1 className="text-2xl font-semibold text-white">Medium</h1>
                         <p className="pt-2 tracking-wide">
                             <span className="align-top text-gray-400">$ </span>
