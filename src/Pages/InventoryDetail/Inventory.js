@@ -7,10 +7,28 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
+import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import MngInvBtn from '../../Shared/ManageInvetoryBtn/MngInvBtn';
 import './Inventory.css';
+
+const containerVariables = {
+    hidden: {
+        opacity: 0,
+    },
+    visible: {
+        opacity: 1,
+        transition: {
+            delay: 0.5,
+            duration: 1.5,
+        },
+    },
+    exit: {
+        x: '-100vw',
+        transition: { ease: 'easeInOut' },
+    },
+};
 
 function Inventory() {
     const { productId } = useParams();
@@ -79,7 +97,13 @@ function Inventory() {
     };
 
     return (
-        <section className="body-font overflow-hidden bg-white text-gray-700">
+        <motion.section
+            variants={containerVariables}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="body-font overflow-hidden bg-white text-gray-700"
+        >
             <div className="container mx-auto px-5 py-24">
                 <div className="flex justify-end">
                     <MngInvBtn />
@@ -278,7 +302,7 @@ function Inventory() {
                     </div>
                 </div>
             </div>
-        </section>
+        </motion.section>
     );
 }
 

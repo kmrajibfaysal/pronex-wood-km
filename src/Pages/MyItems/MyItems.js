@@ -3,6 +3,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/function-component-definition */
 /* eslint-disable no-unused-vars */
+import { motion } from 'framer-motion';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +11,23 @@ import auth from '../../firebase.init';
 import useProduct from '../../hooks/useProduct';
 import PageTitle from '../../Shared/PageTitle/PageTitle';
 import SingleMyItem from './SingleMyItem';
+
+const containerVariables = {
+    hidden: {
+        opacity: 0,
+    },
+    visible: {
+        opacity: 1,
+        transition: {
+            delay: 0.5,
+            duration: 1.5,
+        },
+    },
+    exit: {
+        x: '-100vw',
+        transition: { ease: 'easeInOut' },
+    },
+};
 
 const MyItems = () => {
     const [user] = useAuthState(auth);
@@ -22,7 +40,12 @@ const MyItems = () => {
 
     if (filteredItemLength === 0) {
         return (
-            <div className="mt-6 flex flex-col items-center justify-center pb-24">
+            <motion.div
+                variants={containerVariables}
+                initial="hidden"
+                animate="visible"
+                className="mt-6 flex flex-col items-center justify-center pb-24"
+            >
                 <h1 className="text-2xl md:text-4xl">You have not added any item!</h1>
                 <div className="mt-6 flex flex-col items-center justify-center">
                     <span className="block text-sm md:text-xl">
@@ -38,12 +61,17 @@ const MyItems = () => {
                         </button>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         );
     }
     if (filteredItemLength > 0) {
         return (
-            <>
+            <motion.div
+                variants={containerVariables}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+            >
                 <h1 className="my-5 text-center text-4xl font-bold">Your items</h1>
                 <PageTitle title="My Items" />
                 <div className="container relative mx-auto overflow-x-auto  sm:rounded-lg">
@@ -129,7 +157,7 @@ const MyItems = () => {
                         </tbody>
                     </table>
                 </div>
-            </>
+            </motion.div>
         );
     }
 };

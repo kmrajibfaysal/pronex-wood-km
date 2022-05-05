@@ -1,4 +1,5 @@
-import { Route, Routes } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import AddItem from './Pages/AddItem/AddItem';
 import Success from './Pages/AddItem/Success';
@@ -20,65 +21,68 @@ import Header from './Shared/Header';
 import RequireAuth from './Shared/RequireAuth/RequireAuth';
 
 function App() {
+    const location = useLocation();
     return (
         <div>
             <Header />
 
             <div className="flex h-[100vh] flex-col justify-between md:pt-12">
                 <div>
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/home" element={<Home />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/blogs" element={<Blogs />} />
-                        <Route
-                            path="/inventory/:productId"
-                            element={
-                                <RequireAuth>
-                                    <Inventory />
-                                </RequireAuth>
-                            }
-                        />
-                        <Route
-                            path="/addItem"
-                            element={
-                                <RequireAuth>
-                                    <AddItem />
-                                </RequireAuth>
-                            }
-                        />
-                        <Route
-                            path="/myItems"
-                            element={
-                                <RequireAuth>
-                                    <MyItems />
-                                </RequireAuth>
-                            }
-                        />
-                        <Route
-                            path="/inventory"
-                            element={
-                                <RequireAuth>
-                                    <MngInventory />
-                                </RequireAuth>
-                            }
-                        />
-                        <Route
-                            path="/checkout"
-                            element={
-                                <RequireAuth>
-                                    <CheckOut />
-                                </RequireAuth>
-                            }
-                        />
-                        <Route path="/contact" element={<Contact />} />
-                        <Route path="/reset" element={<ResetPassword />} />
-                        <Route path="/resetSuccess" element={<ResetSuccess />} />
-                        <Route path="/verify" element={<VerifyEmail />} />
-                        <Route path="/addItem/success" element={<Success />} />
-                        <Route path="/*" element={<NotFound />} />
-                    </Routes>
+                    <AnimatePresence exitBeforeEnter>
+                        <Routes location={location} key={location.key}>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/home" element={<Home />} />
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
+                            <Route path="/blogs" element={<Blogs />} />
+                            <Route
+                                path="/inventory/:productId"
+                                element={
+                                    <RequireAuth>
+                                        <Inventory />
+                                    </RequireAuth>
+                                }
+                            />
+                            <Route
+                                path="/addItem"
+                                element={
+                                    <RequireAuth>
+                                        <AddItem />
+                                    </RequireAuth>
+                                }
+                            />
+                            <Route
+                                path="/myItems"
+                                element={
+                                    <RequireAuth>
+                                        <MyItems />
+                                    </RequireAuth>
+                                }
+                            />
+                            <Route
+                                path="/inventory"
+                                element={
+                                    <RequireAuth>
+                                        <MngInventory />
+                                    </RequireAuth>
+                                }
+                            />
+                            <Route
+                                path="/checkout"
+                                element={
+                                    <RequireAuth>
+                                        <CheckOut />
+                                    </RequireAuth>
+                                }
+                            />
+                            <Route path="/contact" element={<Contact />} />
+                            <Route path="/reset" element={<ResetPassword />} />
+                            <Route path="/resetSuccess" element={<ResetSuccess />} />
+                            <Route path="/verify" element={<VerifyEmail />} />
+                            <Route path="/addItem/success" element={<Success />} />
+                            <Route path="/*" element={<NotFound />} />
+                        </Routes>
+                    </AnimatePresence>
                 </div>
                 <ToastContainer />
                 <Footer />

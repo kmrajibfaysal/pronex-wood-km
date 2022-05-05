@@ -3,11 +3,29 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import { motion } from 'framer-motion';
 import React, { useRef } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import PageTitle from '../../Shared/PageTitle/PageTitle';
+
+const containerVariables = {
+    hidden: {
+        opacity: 0,
+    },
+    visible: {
+        opacity: 1,
+        transition: {
+            delay: 0.5,
+            duration: 1.5,
+        },
+    },
+    exit: {
+        x: '-100vw',
+        transition: { ease: 'easeInOut' },
+    },
+};
 
 function AddItem() {
     const [user] = useAuthState(auth);
@@ -64,7 +82,11 @@ function AddItem() {
     };
 
     return (
-        <form
+        <motion.form
+            variants={containerVariables}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
             className="mt-4 flex-col items-center justify-center md:mt-6"
             onSubmit={handleOnSubmit}
         >
@@ -220,7 +242,7 @@ function AddItem() {
                     value="Add item"
                 />
             </div>
-        </form>
+        </motion.form>
     );
 }
 

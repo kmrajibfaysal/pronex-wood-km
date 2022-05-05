@@ -1,10 +1,34 @@
 /* eslint-disable react/button-has-type */
+import { motion } from 'framer-motion';
 import React from 'react';
 import PageTitle from '../../Shared/PageTitle/PageTitle';
 
+const containerVariables = {
+    hidden: {
+        opacity: 0,
+    },
+    visible: {
+        opacity: 1,
+        transition: {
+            delay: 0.5,
+            duration: 1.5,
+        },
+    },
+    exit: {
+        x: '-100vw',
+        transition: { ease: 'easeInOut' },
+    },
+};
+
 function Contact() {
     return (
-        <div className=" bg-white">
+        <motion.div
+            variants={containerVariables}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className=" bg-white"
+        >
             <PageTitle title="Contact" />
             <div className="container mx-auto my-4 px-4 lg:px-20">
                 <div className="my-4 mr-auto w-full rounded-2xl p-8 shadow-2xl md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40">
@@ -102,7 +126,7 @@ function Contact() {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }
 
