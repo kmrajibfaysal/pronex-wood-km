@@ -7,6 +7,7 @@ import React, { useRef } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import PageTitle from '../../Shared/PageTitle/PageTitle';
 
 function AddItem() {
     const [user] = useAuthState(auth);
@@ -67,6 +68,7 @@ function AddItem() {
             className="mt-4 flex-col items-center justify-center md:mt-6"
             onSubmit={handleOnSubmit}
         >
+            <PageTitle title="Add Item" />
             <h1 className="mx-auto  mb-6 rounded py-2  text-center text-3xl font-bold text-sky-700">
                 Add Item
             </h1>

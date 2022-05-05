@@ -16,6 +16,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
+import PageTitle from '../../Shared/PageTitle/PageTitle';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 function SignUp() {
@@ -110,6 +111,7 @@ function SignUp() {
 
     return (
         <div className="w-full px-4 pb-6">
+            <PageTitle title="Register" />
             <form className="flex flex-col items-center justify-center">
                 <div className="mt-16 w-full rounded-xl bg-white  p-10 shadow md:w-1/2 lg:w-1/3">
                     <p

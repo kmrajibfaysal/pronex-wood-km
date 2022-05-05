@@ -1,9 +1,11 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
+import PageTitle from '../../Shared/PageTitle/PageTitle';
 
 function Contact() {
     return (
         <div className="flex h-screen w-screen items-center justify-center bg-white">
+            <PageTitle title="Contact" />
             <div className="container mx-auto my-4 px-4 lg:px-20">
                 <div className="my-4 mr-auto w-full rounded-2xl p-8 shadow-2xl md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40">
                     <div className="flex">

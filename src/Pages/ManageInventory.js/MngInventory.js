@@ -9,6 +9,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
+import PageTitle from '../../Shared/PageTitle/PageTitle';
 import SingleProductMng from './singleProductMng';
 
 function MngInventory() {
@@ -35,6 +36,7 @@ function MngInventory() {
 
     return (
         <div className="container relative mx-auto overflow-x-auto  sm:rounded-lg">
+            <PageTitle title="Inventory" />
             <div className="flex flex-col items-center justify-between p-4 md:flex-row">
                 <div>
                     <label htmlFor="table-search" className="sr-only">

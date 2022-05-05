@@ -3,10 +3,12 @@
 /* eslint-disable react/style-prop-object */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import PageTitle from '../../Shared/PageTitle/PageTitle';
 
 function Blogs() {
     return (
         <div className="container mx-auto w-full pt-6 md:max-w-3xl md:pt-12">
+            <PageTitle title="Blogs" />
             <div className="w-full px-4 text-xl leading-normal text-gray-800 md:px-6">
                 <div className="font-sans">
                     <h1 className="break-normal pt-6 pb-2 font-sans text-3xl font-bold text-gray-900 md:text-4xl">

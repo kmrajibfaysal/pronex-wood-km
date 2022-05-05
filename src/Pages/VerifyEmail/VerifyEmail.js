@@ -3,11 +3,13 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import PageTitle from '../../Shared/PageTitle/PageTitle';
 
 function VerifyEmail() {
     const navigate = useNavigate();
     return (
         <div className="min-w-screen flex min-h-screen items-center justify-center  p-5">
+            <PageTitle title="Verify" />
             <div className="max-w-xl rounded-3xl bg-white p-8 text-center text-gray-800 shadow-xl lg:max-w-3xl lg:p-12">
                 <h3 className="text-2xl">Thanks for signing up in Pronex-Wood!</h3>
                 <div className="flex justify-center">

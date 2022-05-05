@@ -16,6 +16,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
+import PageTitle from '../../Shared/PageTitle/PageTitle';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 function Login() {
@@ -120,6 +121,7 @@ function Login() {
 
     return (
         <div className="w-full px-4 md:py-16">
+            <PageTitle title="Log in" />
             <form className="flex flex-col items-center justify-center">
                 <div className="mt-16 w-full rounded-xl bg-white  p-10 shadow md:w-1/2 lg:w-1/3">
                     <p

@@ -8,6 +8,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import useProduct from '../../hooks/useProduct';
+import PageTitle from '../../Shared/PageTitle/PageTitle';
 import SingleMyItem from './SingleMyItem';
 
 const MyItems = () => {
@@ -44,6 +45,7 @@ const MyItems = () => {
         return (
             <>
                 <h1 className="my-5 text-center text-4xl font-bold">Your items</h1>
+                <PageTitle title="My Items" />
                 <div className="container relative mx-auto overflow-x-auto  sm:rounded-lg">
                     <div className="flex flex-col items-center justify-between p-4 md:flex-row">
                         <div>
