@@ -3,6 +3,8 @@ import { ToastContainer } from 'react-toastify';
 import AddItem from './Pages/AddItem/AddItem';
 import Success from './Pages/AddItem/Success';
 import Blogs from './Pages/Blogs/Blogs';
+import CheckOut from './Pages/Checkout/Checkout';
+import Contact from './Pages/Contact/Contact';
 import Home from './Pages/Home/Home';
 import Inventory from './Pages/InventoryDetail/Inventory';
 import Login from './Pages/Login/Login';
@@ -59,6 +61,15 @@ function App() {
                                 </RequireAuth>
                             }
                         />
+                        <Route
+                            path="/checkout"
+                            element={
+                                <RequireAuth>
+                                    <CheckOut />
+                                </RequireAuth>
+                            }
+                        />
+                        <Route path="/contact" element={<Contact />} />
                         <Route path="/addItem/success" element={<Success />} />
                         <Route path="/*" element={<NotFound />} />
                     </Routes>

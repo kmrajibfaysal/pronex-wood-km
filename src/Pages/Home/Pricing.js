@@ -1,9 +1,12 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Pricing() {
+    const navigate = useNavigate();
     return (
-        <div className=" py-20">
+        <div id="price" className=" py-20">
             <div className="container mx-auto w-full">
                 <div className="text-center font-semibold">
                     <h1 className="text-5xl">
@@ -33,7 +36,7 @@ function Pricing() {
                             <p className="pt-5 text-left font-semibold text-gray-400">
                                 <span className="material-icons align-middle">done</span>
                                 <span className="pl-2">
-                                    Basic <span className="text-black">maintanence</span>
+                                    Basic <span className="text-black">maintenance</span>
                                 </span>
                             </p>
                             <p className="pt-5 text-left font-semibold text-gray-400">
@@ -43,14 +46,17 @@ function Pricing() {
                                 </span>
                             </p>
 
-                            <a href="#" className="">
-                                <p className="mt-8 w-full rounded-xl bg-sky-600 py-4 text-white">
-                                    <span className="font-medium">Choose Plan</span>
-                                    <span className="material-icons pl-2 align-middle text-sm">
-                                        east
-                                    </span>
-                                </p>
-                            </a>
+                            <p className="mt-8 w-full rounded-xl bg-blue-600 py-4 text-white">
+                                <button
+                                    onClick={() => navigate('/checkout')}
+                                    className="font-medium"
+                                >
+                                    Choose Plan
+                                </button>
+                                <span className="material-icons pl-2 align-middle text-sm">
+                                    east
+                                </span>
+                            </p>
                         </div>
                     </div>
 
@@ -82,17 +88,20 @@ function Pricing() {
                                 </span>
                             </p>
 
-                            <a href="#" className="">
-                                <p className="mt-8 w-full rounded-xl bg-sky-600 py-4 text-white">
-                                    <span className="font-medium">Choose Plan</span>
-                                    <span className="material-icons pl-2 align-middle text-sm">
-                                        east
-                                    </span>
-                                </p>
-                            </a>
+                            <p className="mt-8 w-full rounded-xl bg-blue-600 py-4 text-white">
+                                <button
+                                    onClick={() => navigate('/checkout')}
+                                    className="font-medium"
+                                >
+                                    Choose Plan
+                                </button>
+                                <span className="material-icons pl-2 align-middle text-sm">
+                                    east
+                                </span>
+                            </p>
                         </div>
                         <div className="absolute top-4 right-4">
-                            <p className="rounded-full bg-sky-700 px-4 py-1 text-xs font-semibold uppercase">
+                            <p className="rounded-full bg-blue-700 px-4 py-1 text-xs font-semibold uppercase">
                                 Popular
                             </p>
                         </div>
@@ -126,14 +135,17 @@ function Pricing() {
                                 </span>
                             </p>
 
-                            <a href="#" className="">
-                                <p className="mt-8 w-full rounded-xl bg-sky-600 py-4 text-white">
-                                    <span className="font-medium">Choose Plan</span>
-                                    <span className="material-icons pl-2 align-middle text-sm">
-                                        east
-                                    </span>
-                                </p>
-                            </a>
+                            <p className="mt-8 w-full rounded-xl bg-blue-600 py-4 text-white">
+                                <button
+                                    onClick={() => navigate('/checkout')}
+                                    className="font-medium"
+                                >
+                                    Choose Plan
+                                </button>
+                                <span className="material-icons pl-2 align-middle text-sm">
+                                    east
+                                </span>
+                            </p>
                         </div>
                     </div>
                 </div>

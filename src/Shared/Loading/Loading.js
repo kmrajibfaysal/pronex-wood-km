@@ -19,6 +19,7 @@ function Loading() {
                     fill="currentFill"
                 />
             </svg>
+            <span className="text-gray-500">loading...</span>
         </div>
     );
 }

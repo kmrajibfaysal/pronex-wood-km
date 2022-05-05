@@ -1,8 +1,10 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/jsx-no-undef */
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Banner() {
+    const navigate = useNavigate();
     return (
         <div className="bg-gray-100 md:py-16">
             <div className="container mx-auto flex flex-col items-center py-12 sm:py-24">
@@ -19,10 +21,15 @@ function Banner() {
                     </p>
                 </div>
                 <div className="flex items-center justify-center">
-                    <button className="rounded border border-sky-700 bg-sky-700 px-4 py-2 text-sm text-white transition duration-150 ease-in-out  hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-2 sm:px-10 sm:py-4 lg:text-xl lg:font-bold">
-                        Book now
-                    </button>
-                    <button className="ml-4 rounded border border-sky-700 bg-transparent px-4 py-2 text-sm text-sky-700 transition duration-150 ease-in-out  hover:border-sky-600 hover:text-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-2 sm:px-10 sm:py-4 lg:text-xl lg:font-bold">
+                    <a href="#price">
+                        <button className="rounded border border-sky-700 bg-sky-700 px-4 py-2 text-sm text-white transition duration-150 ease-in-out  hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-2 sm:px-10 sm:py-4 lg:text-xl lg:font-bold">
+                            Book now
+                        </button>
+                    </a>
+                    <button
+                        onClick={() => navigate('/contact')}
+                        className="ml-4 rounded border border-sky-700 bg-transparent px-4 py-2 text-sm text-sky-700 transition duration-150 ease-in-out  hover:border-sky-600 hover:text-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-2 sm:px-10 sm:py-4 lg:text-xl lg:font-bold"
+                    >
                         Contact
                     </button>
                 </div>
