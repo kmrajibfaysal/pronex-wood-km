@@ -87,7 +87,7 @@ function AddItem() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="mt-4 flex-col items-center justify-center md:mt-6"
+            className="mt-4 mb-4 flex-col items-center justify-center md:mt-6"
             onSubmit={handleOnSubmit}
         >
             <PageTitle title="Add Item" />

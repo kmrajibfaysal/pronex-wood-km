@@ -4,9 +4,9 @@ import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
-import auth from '../firebase.init';
-import ActiveLink from '../hooks/ActiveLink';
-import Logo from '../Logo.png';
+import auth from '../../firebase.init';
+import ActiveLink from '../../hooks/ActiveLink';
+import Logo from '../../Logo.png';
 
 function Header() {
     const [open, setOpen] = useState(false);

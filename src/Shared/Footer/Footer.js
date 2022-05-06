@@ -15,7 +15,7 @@ function Footer() {
                 </a>
                 <ul className="mb-6 flex flex-wrap items-center text-sm text-white dark:text-gray-400 sm:mb-0">
                     <li>
-                        <Link to="/" className="mr-4 hover:underline md:mr-6 ">
+                        <Link to="/about" className="mr-4 hover:underline md:mr-6 ">
                             About
                         </Link>
                     </li>
@@ -30,7 +30,7 @@ function Footer() {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/" className="hover:underline">
+                        <Link to="/contact" className="hover:underline">
                             Contact
                         </Link>
                     </li>

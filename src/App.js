@@ -16,8 +16,9 @@ import Register from './Pages/Register/Register';
 import ResetPassword from './Pages/ResetPassword/ResetPassword';
 import ResetSuccess from './Pages/ResetPassword/ResetSuccess';
 import VerifyEmail from './Pages/VerifyEmail/VerifyEmail';
+import About from './Shared/About/About';
 import Footer from './Shared/Footer/Footer';
-import Header from './Shared/Header';
+import Header from './Shared/Header/Header';
 import RequireAuth from './Shared/RequireAuth/RequireAuth';
 
 function App() {
@@ -79,6 +80,7 @@ function App() {
                             <Route path="/resetSuccess" element={<ResetSuccess />} />
                             <Route path="/verify" element={<VerifyEmail />} />
                             <Route path="/addItem/success" element={<Success />} />
+                            <Route path="/about" element={<About />} />
                             <Route path="/*" element={<NotFound />} />
                         </Routes>
                     </AnimatePresence>
