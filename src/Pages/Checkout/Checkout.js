@@ -5,7 +5,7 @@
 
 function CheckOut() {
     return (
-        <section className="min-h-screen bg-gray-100 p-4 text-gray-600 antialiased">
+        <section className="p-4 text-gray-600 antialiased">
             <div className="h-full">
                 <div>
                     <div className="relative mx-auto max-w-lg px-4 pt-4 pb-8 sm:px-6 lg:px-8">
