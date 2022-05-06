@@ -9,6 +9,7 @@ import {
     // eslint-disable-next-line prettier/prettier
     useSignInWithTwitter
 } from 'react-firebase-hooks/auth';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
@@ -17,6 +18,10 @@ function SocialLogin() {
     const [signInWithGoogle, user1, loading1, error1] = useSignInWithGoogle(auth);
     const [signInWithGithub, user2, loading2, error2] = useSignInWithGithub(auth);
     const [signInWithTwitter, user3, loading3, error3] = useSignInWithTwitter(auth);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/';
 
     if (loading1 || loading2 || loading3) {
         return <Loading />;
@@ -37,6 +42,10 @@ function SocialLogin() {
         user3 && toast('You are logged in!');
         if (error3) console.log(error3);
     };
+
+    if (user1 || user2) {
+        navigate(from, { replace: true });
+    }
 
     return (
         <>
