@@ -23,6 +23,7 @@ function Login() {
     const [token, setToken] = useState({});
     const location = useLocation();
     const [agree, setAgree] = useState(false);
+    const from = location.state?.from?.pathname || '/';
 
     const [err, setErr] = useState('');
     const [user1] = useAuthState(auth);
@@ -37,10 +38,6 @@ function Login() {
     if (loading) {
         return <Loading />;
     }
-
-    //
-
-    const from = location.state?.from?.pathname || '/';
 
     //
 

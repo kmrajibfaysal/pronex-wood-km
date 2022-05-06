@@ -1,5 +1,5 @@
 import { AnimatePresence } from 'framer-motion';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import AddItem from './Pages/AddItem/AddItem';
 import Success from './Pages/AddItem/Success';
@@ -21,7 +21,6 @@ import Header from './Shared/Header';
 import RequireAuth from './Shared/RequireAuth/RequireAuth';
 
 function App() {
-    const location = useLocation();
     return (
         <div>
             <Header />
@@ -29,7 +28,7 @@ function App() {
             <div className="flex h-[100vh] flex-col justify-between md:pt-12">
                 <div>
                     <AnimatePresence exitBeforeEnter>
-                        <Routes location={location} key={location.key}>
+                        <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/home" element={<Home />} />
                             <Route path="/login" element={<Login />} />
