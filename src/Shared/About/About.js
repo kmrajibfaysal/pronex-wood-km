@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const containerVariables = {
     hidden: {
@@ -19,6 +20,8 @@ const containerVariables = {
 };
 
 function About() {
+    const navigate = useNavigate();
+
     return (
         <motion.div
             variants={containerVariables}
@@ -47,6 +50,7 @@ function About() {
                             everyday.
                         </p>
                         <button
+                            onClick={() => navigate('/contact')}
                             type="button"
                             className="mt-6 rounded-md bg-sky-600 py-3 px-7 text-white"
                         >
